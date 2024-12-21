@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 
 function Header() {
   return (
-    <div className="bg-slate-200 py-2 px-10 shadow-sm flex justify-between items-center">
+    <div className="bg-white py-2 px-10 shadow-sm flex justify-between items-center">
       <div>
         <h1>
           <span className="text-3xl text-slate-800 font-bold">Auth</span>{" "}
