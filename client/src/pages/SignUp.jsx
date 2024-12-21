@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import user from "../assets/user.png";
 import email from "../assets/email.png";
 import password from "../assets/password.png";
 import background from "../assets/background.jpeg";
 
 function SignUp() {
+  const [formData, setFormData] = useState({});
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await fetch("/api/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+    console.log(data);
+  };
+
   return (
     <div className="flex h-screen w-full">
       <div className="bg-slate-200 w-full items-center flex justify-center lg:w-1/2">
@@ -21,9 +41,9 @@ function SignUp() {
             </p>
           </div>
 
-          <form className="mt-7">
+          <form onSubmit={handleSubmit} className="mt-7">
             <div>
-              <label className="font-medium text-base ml-10 ">User name</label>
+              <label className="font-medium text-base ml-10 ">User Name</label>
               <div className="flex items-center justify-center">
                 <img
                   src={user}
@@ -33,8 +53,9 @@ function SignUp() {
                 <input
                   className="w-full bg-transparent border-2 px-2 py-1 mt-1 border-slate-300 rounded-xl"
                   type="text"
-                  id="name"
+                  id="username"
                   placeholder="Enter your User Name"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -53,6 +74,7 @@ function SignUp() {
                   type="email"
                   id="email"
                   placeholder="Enter your Email"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -75,6 +97,7 @@ function SignUp() {
                   type="password"
                   id="password"
                   placeholder="Enter your password"
+                  onChange={handleChange}
                 />
               </div>
             </div>

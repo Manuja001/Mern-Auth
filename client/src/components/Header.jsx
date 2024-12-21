@@ -3,11 +3,11 @@ import logo from "../assets/logo.png";
 
 function Header() {
   return (
-    <div className="bg-white py-2 px-10 shadow-sm flex justify-between items-center">
+    <div className="bg-slate-500 py-2 px-10 flex justify-between items-center shadow-md">
       <div>
         <h1>
           <span className="text-3xl text-slate-800 font-bold">Auth</span>{" "}
-          <span className="text-2xl text-slate-500 font-semibold">App</span>{" "}
+          <span className="text-2xl text-slate-100 font-semibold">App</span>{" "}
           <img
             src={logo}
             alt="logo"
@@ -15,7 +15,7 @@ function Header() {
           />
         </h1>
       </div>
-      <div className="font-semibold">
+      <div className="font-semibold text-white">
         <nav>
           <ul className="flex gap-5">
             <li>
