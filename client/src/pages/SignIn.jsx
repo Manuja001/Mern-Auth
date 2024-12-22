@@ -4,10 +4,13 @@ import email from "../assets/email.png";
 import password from "../assets/password.png";
 import background from "../assets/background_1.jpeg";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { SignInStart, signInFailure, signInSuccess } from "../redux/UserSlice";
 
 function SignIn() {
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -16,6 +19,7 @@ function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      dispatch(SignInStart());
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
@@ -23,12 +27,17 @@ function SignIn() {
         },
         body: JSON.stringify(formData),
       });
-
       const data = await res.json();
+
+      if (data.success === false) {
+        dispatch(signInFailure(data.message));
+        return;
+      }
+      dispatch(signInSuccess(data));
       console.log(data);
       navigate("/");
     } catch (error) {
-      console.log(error);
+      dispatch(signInFailure(error.message));
     }
   };
 
