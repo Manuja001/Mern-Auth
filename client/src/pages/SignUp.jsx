@@ -3,27 +3,33 @@ import user from "../assets/user.png";
 import email from "../assets/email.png";
 import password from "../assets/password.png";
 import background from "../assets/background.jpeg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [formData, setFormData] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await fetch("/api/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    try {
+      e.preventDefault();
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    const data = await res.json();
-    console.log(data);
+      const data = await res.json();
+      console.log(data);
+      navigate("/signin");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
