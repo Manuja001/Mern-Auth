@@ -3,6 +3,7 @@ import user from "../assets/user.png";
 import email from "../assets/email.png";
 import password from "../assets/password.png";
 import background from "../assets/background.jpeg";
+import { Link } from "react-router-dom";
 
 function SignUp() {
   const [formData, setFormData] = useState({});
@@ -104,7 +105,9 @@ function SignUp() {
             <div className="mt-5 flex justify-between items-center"></div>
             <p className="mt-5 text-center">
               Already have an account?{" "}
-              <span className="text-slate-500 cursor-pointer">Sign In</span>
+              <Link to="/signin" className="text-slate-500 cursor-pointer">
+                Sign In
+              </Link>
             </p>
             <div className="flex justify-center">
               <button className="bg-slate-500 text-white uppercase text-lg font-semibold px-5 py-3 rounded-3xl mt-7 hover:scale-[1.02] ease-in-out active:scale-[0.98]">
