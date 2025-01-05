@@ -4,6 +4,7 @@ import email from "../assets/email.png";
 import password from "../assets/password.png";
 import background from "../assets/background.jpeg";
 import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 function SignUp() {
   const [formData, setFormData] = useState({});
@@ -120,6 +121,7 @@ function SignUp() {
                 Sign Up
               </button>
             </div>
+            <OAuth />
           </form>
         </div>
       </div>

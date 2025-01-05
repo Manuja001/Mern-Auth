@@ -6,6 +6,7 @@ import background from "../assets/background_1.jpeg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SignInStart, signInFailure, signInSuccess } from "../redux/UserSlice";
+import OAuth from "../components/OAuth";
 
 function SignIn() {
   const [formData, setFormData] = useState({});
@@ -119,6 +120,7 @@ function SignIn() {
                 Sign In
               </button>
             </div>
+            <OAuth />
           </form>
         </div>
       </div>
